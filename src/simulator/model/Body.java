@@ -44,6 +44,6 @@ void resetForce() {
 	this.f.minus(this.f);
 }
 void move(double t) {
-	
+	System.out.println("mkkjk");
 }
 }
