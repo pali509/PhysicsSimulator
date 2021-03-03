@@ -6,6 +6,7 @@ import simulator.misc.Vector2D;
 
 public class Body {
 
+// shouldn't it be like new Vector() etc??
 String id;
 Vector2D v;
 Vector2D p;
