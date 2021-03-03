@@ -65,7 +65,7 @@ void move(double t) {
 //Vectors set functions??
 //TODO
 public JSONObject getState() {
-
+	System.out.println("nothing here");
 }
 
 public String toString() {
