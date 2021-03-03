@@ -1,5 +1,7 @@
 package simulator.model;
 
+import org.json.JSONObject;
+
 import simulator.misc.Vector2D;
 
 public class Body {
@@ -9,6 +11,7 @@ Vector2D v;
 Vector2D p;
 Vector2D f;
 double m;
+Vector2D a;
 
 public Body(String id, Vector2D v,Vector2D p, double m){
 this.id = id;
@@ -44,6 +47,28 @@ void resetForce() {
 	this.f.minus(this.f);
 }
 void move(double t) {
-	System.out.println("mkkjk");
+	if(m==0) {
+		a.setX(0);
+		a.setY(0);
+	} else {
+		a.setX(f.getX()/m);
+		a.setY(f.getY()/m);
+	}
+	p.setX(p.getX() + (v.getX() * t) + (0.5 * a.getX() * t * t));
+	p.setY(p.getY() + (v.getY() * t) + (0.5 * a.getY() * t * t));
+	
+	v.setX(v.getX() + (a.getX() * t));
+	v.setY(v.getY() + (a.getY() * t));
 }
+
+//Vectors set functions??
+//TODO
+public JSONObject getState() {
+
+}
+
+public String toString() {
+	return getState().toString();
+}
+
 }
