@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import simulator.control.StateComparator;
 import simulator.factories.Factory;
+import simulator.misc.Vector2D;
 import simulator.model.Body;
 import simulator.model.ForceLaws;
 
@@ -221,6 +222,11 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
+		
+		Vector2D a = new Vector2D();
+		Vector2D b = new Vector2D();
+		Body x = new Body("1", a, b,5);
+		x.getState();
 	/*	try {
 
 			init();

@@ -6,11 +6,10 @@ import simulator.misc.Vector2D;
 
 public class Body {
 
-// shouldn't it be like new Vector() etc??
 String id;
 Vector2D v;
 Vector2D p;
-Vector2D f;
+Vector2D f = new Vector2D();
 double m;
 Vector2D a;
 
@@ -49,23 +48,27 @@ void resetForce() {
 }
 void move(double t) {
 	if(m==0) {
-		a.setX(0);
-		a.setY(0);
+		a = a.scale(0);
 	} else {
-		a.setX(f.getX()/m);
-		a.setY(f.getY()/m);
+		a = f.scale(1/m);
 	}
-	p.setX(p.getX() + (v.getX() * t) + (0.5 * a.getX() * t * t));
-	p.setY(p.getY() + (v.getY() * t) + (0.5 * a.getY() * t * t));
-	
-	v.setX(v.getX() + (a.getX() * t));
-	v.setY(v.getY() + (a.getY() * t));
+	p = (p.plus(v.scale(t))).plus(a.scale(0.5*t*t));
+	v = v.plus(a.scale(t));
 }
 
-//Vectors set functions??
-//TODO
+
+
 public JSONObject getState() {
-	System.out.println("nothing here");
+	
+	JSONObject jo1 = new JSONObject();
+
+	jo1.put("id", id);
+	jo1.put("m", m);
+	jo1.put("p", p.asJSONArray());
+	jo1.put("v", v.asJSONArray());
+	jo1.put("f", f.asJSONArray());
+	
+	return jo1;
 }
 
 public String toString() {

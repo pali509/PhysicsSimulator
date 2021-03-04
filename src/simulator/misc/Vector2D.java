@@ -57,14 +57,6 @@ public class Vector2D {
 	public double getY() {
 		return _y;
 	}
-	
-	public void setX(double x) {
-		_x = x;
-	}
-	
-	public void setY(double y) {
-		_y = y;
-	}
 
 	// create and return a new object whose value is (this * factor)
 	public Vector2D scale(double factor) {

@@ -18,23 +18,22 @@ public class MassLossingBody extends Body {
 	void move(double t) {
 		c += t;
 		if(m==0) {
-			a.setX(0);
-			a.setY(0);
+			a = a.scale(0);
 		} else {
-			a.setX(f.getX()/m);
-			a.setY(f.getY()/m);
+			a = f.scale(1/m);
 		}
-		p.setX(p.getX() + (v.getX() * t) + (0.5 * a.getX() * t * t));
-		p.setY(p.getY() + (v.getY() * t) + (0.5 * a.getY() * t * t));
+		p = (p.plus(v.scale(t))).plus(a.scale(0.5*t*t));
 		
-		//???
+		
+		
 		if(c >= lFrequency) {
 			m = m * (1 - lFactor);
 			c = 0.0;
 		}
 		
-		v.setX(v.getX() + (a.getX() * t));
-		v.setY(v.getY() + (a.getY() * t));
+		v = v.plus(a.scale(t));
+		
+		
 	}
 	
 }
